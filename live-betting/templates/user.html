@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <title>insta485</title>
+    <link href="{{url_for('static',filename='images/logo.png')}}" rel="icon" type="image/jpeg" />
+    <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <a href="/">
+        <img src="{{url_for('static',filename='images/logo.png')}}" alt="logo1" class="logo camera" />
+        <img src="{{url_for('static',filename='images/insta485.png')}}" alt="logo2" class="logo" />
+      </a>
+      <div class="header-right">
+        <a href="/explore/" class="explore-right">explore</a>
+        <a href="/u/{{logname}}/">{{logname}}</a>
+      </div>
+    </div>
+
+    <div class="user-info">
+      <h1>{{username}}</h1>
+      {% if logname != username %}
+      <p>{{"not " if not logname_follows_username}}following</p>
+      {% if not logname_follows_username %}
+      <form action="" method="post" enctype="multipart/form-data">
+        <input type="submit" name="follow" value="follow"/>
+        <input type="hidden" name="username" value="{{username}}"/>
+      </form>
+      {% else %}
+      <form action="" method="post" enctype="multipart/form-data">
+        <input type="submit" name="unfollow" value="unfollow"/>
+        <input type="hidden" name="username" value="{{username}}"/>
+      </form>
+      {% endif %}
+      {% else %}
+      <p><strong>
+        <a href="/accounts/edit/" class="hide-decoration">Edit profile</a> |
+        <a href="/accounts/logout/" class="hide-decoration">logout</a>
+      </strong></p>
+      {% endif %}
+      <p>{{total_posts|string + " post" if total_posts == 1 else total_posts|string + " posts"}} <strong>
+        <a href="/u/{{username}}/followers/" class="hide-decoration">{{followers|string + " follower" if followers == 1 else followers|string + " followers"}}</a>
+        <a href="/u/{{username}}/following/" class="hide-decoration">{{following}} following</a>
+      </strong></p>
+      <p>{{fullname}}</p>
+      {% if logname == username %}
+      <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" name="create_post" value="upload new post"/>
+      </form>
+      {% endif %}
+    </div>
+
+    <div class="row">
+      {% for post in posts %}
+      <div class="user-posts">
+        <a href="/p/{{post.postid}}/">
+          <img src="{{post.filename}}" alt="post" class="user-post">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>

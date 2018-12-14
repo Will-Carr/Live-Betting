@@ -1,0 +1,158 @@
+body {
+  padding: 0px 25px 0px 25px;
+}
+
+.logo {
+  height: 56px;
+  padding: 0px 10px 0px 10px;
+}
+
+.camera {
+  border-right: 2px solid black;
+  padding-left: 0px !important;
+}
+
+.header {
+  overflow: hidden;
+  padding: 10px 10px;
+  border-bottom: 2px solid black;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  font-size: 1.5em;
+  line-height: 56px;
+  height: 56px;
+}
+
+.header-right {
+  float: right;
+}
+
+.explore-right {
+  float: right;
+  border-right: 2px solid black;
+}
+
+.post, .follower {
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 25px 25px 0px 25px;
+  overflow: hidden;
+  padding: 10px 10px;
+}
+
+.propic {
+  float: left;
+  height: 40px;
+  padding-right: 20px;
+}
+
+.post-header {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  font-size: 1.5em;
+  line-height: 40px;
+  height: 40px;
+}
+
+.post-header-right {
+  float: right;
+  padding: 10px 10px 10px 10px;
+}
+
+.timestamp {
+  color: gray;
+  text-align: center;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  font-size: 1.5em;
+  line-height: 40px;
+  height: 40px;
+}
+
+.post-img-div {
+  margin-top: 45px;
+}
+
+.post-img {
+  width: 100%;
+}
+
+.comment-u {
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.user-info {
+  margin: 25px 25px 0px 25px;
+}
+
+.user-posts {
+  /* float: left; */
+  display: inline-block;
+  width: 45%;
+  padding: 10px;
+}
+
+.user-post {
+  width: 100%;
+}
+
+.hide-decoration {
+  color: black;
+  text-decoration: none;
+}
+
+.post-template-img-div {
+  margin-top: 10px;
+  float: left;
+  width: 60%;
+}
+
+.post-template-img {
+  width: 100%;
+}
+
+.comments-right {
+  float: right;
+  width: 38%;
+}
+
+.comments-post {
+  float: left;
+  clear: both;
+}
+
+.post-likes {
+  float: left;
+  clear: both;
+}
+
+.follower-left {
+  /* float: left; */
+  display: inline-block;
+}
+
+.follower-right {
+  float: right;
+  margin: 0;
+  margin-right: 10px;
+  padding: 10px;
+  color: gray;
+  font-size: 1.5em;
+  line-height: 40px;
+  height: 40px;
+}
+
+.follower-pic {
+  height: 60px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+		<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+		<meta content='width=device-width, initial-scale=1' name='viewport'>
+		<title>insta485</title>
+		<link href="{{url_for('static',filename='images/logo.png')}}" rel="icon" type="image/jpeg" />
+		<link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <a href="/">
+        <img src="{{url_for('static',filename='images/logo.png')}}" alt="logo1" class="logo camera" />
+        <img src="{{url_for('static',filename='images/insta485.png')}}" alt="logo2" class="logo" />
+      </a>
+      <div class="header-right">
+        <a href="/accounts/login/" class="explore-right">login</a>
+      </div>
+    </div>
+
+    <div class="post">
+      <form action="" method="post" enctype="multipart/form-data">
+        <label for="file">Photo</label>
+        <input type="file" name="file">
+        <br />
+        <label for="fullname">Name</label>
+        <input type="text" name="fullname"/>
+        <br />
+        <label for="username">Username</label>
+        <input type="text" name="username"/>
+        <br />
+        <label for="email">Email</label>
+        <input type="text" name="email"/>
+        <br />
+        <label for="password">Password</label>
+        <input type="password" name="password"/>
+        <br />
+        <input type="submit" name="signup" value="sign up"/>
+      </form>
+      <p>Have an account? <a href="/accounts/login/" class="hide-decoration"><strong>Log in</strong></a></p>
+    </div>
+
+  </body>
+</html>

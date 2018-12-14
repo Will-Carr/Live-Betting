@@ -1,0 +1,13 @@
+*~
+*.log
+*.egg-info/
+*.db
+*.pyc
+.DS_Store
+__pycache__/
+env/
+var/
+.vs_code/
+node_modules/
+bundle.js
+cookies.txt
