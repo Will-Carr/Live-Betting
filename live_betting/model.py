@@ -1,9 +1,6 @@
 """Loads current game and stores it as global."""
 
-CUR_GAME = {
-    "sport": "football",
-    "team": "texas"
-}
+CUR_GAME = {}
 
 
 def load_cur_game():
@@ -19,7 +16,7 @@ def load_cur_game():
     global CUR_GAME
     CUR_GAME = {
         "sport": "football",
-        "team": "texas"
+        "team": "virginia tech"
     }
 
 

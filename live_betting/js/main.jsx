@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Timeline from './timeline';
+import AllOdds from './allOdds';
 
 ReactDOM.render(
-  <Timeline url="/api/v1/game/" />,
+  <AllOdds url="/api/v1/odds/" />,
   document.getElementById('reactEntry'),
 );
