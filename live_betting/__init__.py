@@ -16,9 +16,13 @@ app.config.from_envvar('LIVEBETTING_SETTINGS', silent=True)
 
 app.config['JSON_AS_ASCII'] = False
 
+from live_betting.model import load_cur_game
+
+load_cur_game()
+
 # Tell our app about views and model.  This is dangerously close to a
 # circular import, which is naughty, but Flask was designed that way.
 # (Reference http://flask.pocoo.org/docs/0.12/patterns/packages/)  We're
 # going to tell pylint and pycodestyle to ignore this coding style violation.
 import live_betting.api  # noqa: E402  pylint: disable=wrong-import-position
-# import live_betting.views  # noqa: E402  pylint: disable=wrong-import-position
+import live_betting.views  # noqa: E402  pylint: disable=wrong-import-position
