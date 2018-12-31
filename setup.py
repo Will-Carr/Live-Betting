@@ -1,19 +1,15 @@
-"""live-betting python package configuration."""
+"""live_betting python package configuration."""
 
 from setuptools import setup
 
 setup(
-    name='live-betting',
+    name='live_betting',
     version='1.0.0',
-    packages=['live-betting'],
+    packages=['live_betting'],
     include_package_data=True,
     install_requires=[
         'flask',
-        'nodeenv',
-        'sh',
-        'Flask-Testing',
-        'selenium',
+        'bs4',
         'requests',
-        'arrow'
     ],
 )

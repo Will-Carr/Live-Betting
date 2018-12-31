@@ -1,6 +1,4 @@
 import React from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-// import PropTypes from 'prop-types';
 import Likes from './likes';
 import PostComments from './post_comments';
 import ShowComments from './show_comments';
@@ -9,12 +7,9 @@ class Timeline extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
-      url: '/api/v1/p/',
-      next: '',
-      hasMore: true,
+
     };
-    this.getMorePosts = this.getMorePosts.bind(this);
+    this.refreshGame = this.refreshGame.bind(this);
   }
 
   componentDidMount() {

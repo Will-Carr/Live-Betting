@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './live-betting/js/main.jsx',
+  entry: './live_betting/js/main.jsx',
   output: {
-    path: path.join(__dirname, '/live-betting/static/js/'),
+    path: path.join(__dirname, '/live_betting/static/js/'),
     filename: 'bundle.js',
   },
   module: {

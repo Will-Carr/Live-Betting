@@ -1,8 +1,8 @@
 {
-  "name": "live-betting",
+  "name": "live_betting",
   "version": "1.0.0",
-  "description": "live-betting front end",
-  "main": "live-betting/js/main.jsx",
+  "description": "live_betting front end",
+  "main": "live_betting/js/main.jsx",
   "author": "Will Carr",
   "license": "MIT",
   "repository": {},
