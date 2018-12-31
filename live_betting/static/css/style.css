@@ -5,22 +5,66 @@ body {
 table {
   width:100%;
 }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
 th, td {
   padding: 15px;
   text-align: left;
   font-size: 3em;
 }
+
 tr:nth-child(even) {
   background-color: #eee;
 }
+
 tr:nth-child(odd) {
  background-color: #fff;
 }
+
 th {
   background-color: black;
   color: white;
+}
+
+i.inc {
+  border: solid green;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+i.dec {
+  border: solid red;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+i.none {
+  border: solid red;
+  border-width: 0 0 0 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+td.inc {
+  color: green;
+}
+
+td.dec {
+  color: red;
+}
+
+td.none {
+  color: black;
 }

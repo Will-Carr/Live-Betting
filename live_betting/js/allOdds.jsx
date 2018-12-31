@@ -4,7 +4,39 @@ class AllOdds extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      odds: {}
+      odds: {},
+      prevOdds: {
+        "team1": {
+          "name": "",
+          "spread": {
+            "spread": "",
+            "change": "none"
+          },
+          "moneyline": {
+            "moneyline": "",
+            "change": "none"
+          },
+          "total": {
+            "total": "",
+            "change": "none"
+          }
+        },
+        "team2": {
+          "name": "",
+          "spread": {
+            "spread": "",
+            "change": "none"
+          },
+          "moneyline": {
+            "moneyline": "",
+            "change": "none"
+          },
+          "total": {
+            "total": "",
+            "change": "none"
+          }
+        }
+      }
     };
     this.refreshGame = this.refreshGame.bind(this);
   }
@@ -34,76 +66,207 @@ class AllOdds extends React.Component {
     let mainOdds = {
       "team1": {
         "name": "",
-        "spread": "",
-        "moneyline": "",
-        "total": ""
+        "spread": {
+          "spread": "",
+          "change": "none"
+        },
+        "moneyline": {
+          "moneyline": "",
+          "change": "none"
+        },
+        "total": {
+          "total": "",
+          "change": "none"
+        }
       },
       "team2": {
         "name": "",
-        "spread": "",
-        "moneyline": "",
-        "total": ""
+        "spread": {
+          "spread": "",
+          "change": "none"
+        },
+        "moneyline": {
+          "moneyline": "",
+          "change": "none"
+        },
+        "total": {
+          "total": "",
+          "change": "none"
+        }
       }
     }
 
     for(let i = 0; i < this.state.odds.length; i++){
       let odd = this.state.odds[i];
+      let prevOdds = this.state.prevOdds;
       if(odd["type"] == "spread" && (odd["period"] == "Match" || odd["period"] == "Live Match")){
 
         if(mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]){
           mainOdds["team1"]["name"] = odd["teams"][0]["team"]
-          mainOdds["team1"]["spread"] = odd["teams"][0]["val"]
+
+          if(parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team1"]["spread"]["spread"])){
+            mainOdds["team1"]["spread"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team1"]["spread"]["spread"])){
+            mainOdds["team1"]["spread"]["change"] = "dec";
+          } else {
+            mainOdds["team1"]["spread"]["change"] = "none";
+          }
+
+          mainOdds["team1"]["spread"]["spread"] = odd["teams"][0]["val"]
         } else if(mainOdds["team1"]["name"] == odd["teams"][1]["team"]){
           mainOdds["team1"]["name"] = odd["teams"][1]["team"]
-          mainOdds["team1"]["spread"] = odd["teams"][1]["val"]
+
+          if(parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team1"]["spread"]["spread"])){
+            mainOdds["team1"]["spread"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team1"]["spread"]["spread"])){
+            mainOdds["team1"]["spread"]["change"] = "dec";
+          } else {
+            mainOdds["team1"]["spread"]["change"] = "none";
+          }
+
+          mainOdds["team1"]["spread"]["spread"] = odd["teams"][1]["val"]
         }
 
         if(mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]){
           mainOdds["team2"]["name"] = odd["teams"][1]["team"]
-          mainOdds["team2"]["spread"] = odd["teams"][1]["val"]
+
+          if(parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team2"]["spread"]["spread"])){
+            mainOdds["team2"]["spread"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team2"]["spread"]["spread"])){
+            mainOdds["team2"]["spread"]["change"] = "dec";
+          } else {
+            mainOdds["team2"]["spread"]["change"] = "none";
+          }
+
+          mainOdds["team2"]["spread"]["spread"] = odd["teams"][1]["val"]
         } else if(mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]){
           mainOdds["team2"]["name"] = odd["teams"][0]["team"]
-          mainOdds["team2"]["spread"] = odd["teams"][0]["val"]
+
+          if(parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team2"]["spread"]["spread"])){
+            mainOdds["team2"]["spread"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team2"]["spread"]["spread"])){
+            mainOdds["team2"]["spread"]["change"] = "dec";
+          } else {
+            mainOdds["team2"]["spread"]["change"] = "none";
+          }
+
+          mainOdds["team2"]["spread"]["spread"] = odd["teams"][0]["val"]
         }
 
       } else if(odd["type"] == "moneyline" && (odd["period"] == "Match" || odd["period"] == "Live Match")){
 
         if(mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]){
           mainOdds["team1"]["name"] = odd["teams"][0]["team"]
-          mainOdds["team1"]["moneyline"] = odd["teams"][0]["val"]
+
+          if(parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])){
+            mainOdds["team1"]["moneyline"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])){
+            mainOdds["team1"]["moneyline"]["change"] = "dec";
+          } else {
+            mainOdds["team1"]["moneyline"]["change"] = "none";
+          }
+
+          mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][0]["val"]
         } else if(mainOdds["team1"]["name"] == odd["teams"][1]["team"]){
           mainOdds["team1"]["name"] = odd["teams"][1]["team"]
-          mainOdds["team1"]["moneyline"] = odd["teams"][1]["val"]
+
+          if(parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])){
+            mainOdds["team1"]["moneyline"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])){
+            mainOdds["team1"]["moneyline"]["change"] = "dec";
+          } else {
+            mainOdds["team1"]["moneyline"]["change"] = "none";
+          }
+
+          mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][1]["val"]
         }
 
         if(mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]){
           mainOdds["team2"]["name"] = odd["teams"][1]["team"]
-          mainOdds["team2"]["moneyline"] = odd["teams"][1]["val"]
+
+          if(parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])){
+            mainOdds["team2"]["moneyline"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])){
+            mainOdds["team2"]["moneyline"]["change"] = "dec";
+          } else {
+            mainOdds["team2"]["moneyline"]["change"] = "none";
+          }
+
+          mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][1]["val"]
         } else if(mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]){
           mainOdds["team2"]["name"] = odd["teams"][0]["team"]
-          mainOdds["team2"]["moneyline"] = odd["teams"][0]["val"]
+
+          if(parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])){
+            mainOdds["team2"]["moneyline"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])){
+            mainOdds["team2"]["moneyline"]["change"] = "dec";
+          } else {
+            mainOdds["team2"]["moneyline"]["change"] = "none";
+          }
+
+          mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][0]["val"]
         }
 
       } else if(odd["type"] == "total" && (odd["period"] == "Match" || odd["period"] == "Live Match")){
 
         if(mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]){
           mainOdds["team1"]["name"] = odd["teams"][0]["team"]
-          mainOdds["team1"]["total"] = odd["teams"][0]["val"]
+
+          if(parseFloat(odd["teams"][0]["val"].substring(2)) > parseFloat(prevOdds["team1"]["total"]["total"].substring(2))){
+            mainOdds["team1"]["total"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][0]["val"].substring(2)) < parseFloat(prevOdds["team1"]["total"]["total"].substring(2))){
+            mainOdds["team1"]["total"]["change"] = "dec";
+          } else {
+            mainOdds["team1"]["total"]["change"] = "none";
+          }
+
+          mainOdds["team1"]["total"]["total"] = odd["teams"][0]["val"]
         } else if(mainOdds["team1"]["name"] == odd["teams"][1]["team"]){
           mainOdds["team1"]["name"] = odd["teams"][1]["team"]
-          mainOdds["team1"]["total"] = odd["teams"][1]["val"]
+
+          if(parseFloat(odd["teams"][1]["val"].substring(2)) > parseFloat(prevOdds["team1"]["total"]["total"].substring(2))){
+            mainOdds["team1"]["total"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][1]["val"].substring(2)) < parseFloat(prevOdds["team1"]["total"]["total"].substring(2))){
+            mainOdds["team1"]["total"]["change"] = "dec";
+          } else {
+            mainOdds["team1"]["total"]["change"] = "none";
+          }
+
+          mainOdds["team1"]["total"]["total"] = odd["teams"][1]["val"]
         }
 
         if(mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]){
           mainOdds["team2"]["name"] = odd["teams"][1]["team"]
-          mainOdds["team2"]["total"] = odd["teams"][1]["val"]
+
+          if(parseFloat(odd["teams"][1]["val"].substring(2)) > parseFloat(prevOdds["team2"]["total"]["total"].substring(2))){
+            mainOdds["team2"]["total"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][1]["val"].substring(2)) < parseFloat(prevOdds["team2"]["total"]["total"].substring(2))){
+            mainOdds["team2"]["total"]["change"] = "dec";
+          } else {
+            mainOdds["team2"]["total"]["change"] = "none";
+          }
+
+          mainOdds["team2"]["total"]["total"] = odd["teams"][1]["val"]
         } else if(mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]){
           mainOdds["team2"]["name"] = odd["teams"][0]["team"]
-          mainOdds["team2"]["total"] = odd["teams"][0]["val"]
+
+          if(parseFloat(odd["teams"][0]["val"].substring(2)) > parseFloat(prevOdds["team2"]["total"]["total"].substring(2))){
+            mainOdds["team2"]["total"]["change"] = "inc";
+          } else if(parseFloat(odd["teams"][0]["val"].substring(2)) < parseFloat(prevOdds["team2"]["total"]["total"].substring(2))){
+            mainOdds["team2"]["total"]["change"] = "dec";
+          } else {
+            mainOdds["team2"]["total"]["change"] = "none";
+          }
+
+
+          mainOdds["team2"]["total"]["total"] = odd["teams"][0]["val"]
         }
 
       }
     }
+
+
+    this.state.prevOdds = mainOdds;
 
 
     return (
@@ -121,15 +284,15 @@ class AllOdds extends React.Component {
           <tbody>
             <tr>
               <td>{mainOdds.team1.name}</td>
-              <td>{mainOdds.team1.spread}</td>
-              <td>{mainOdds.team1.moneyline}</td>
-              <td>{mainOdds.team1.total}</td>
+              <td className={mainOdds.team1.spread.change}>{mainOdds.team1.spread.spread} <i className={mainOdds.team1.spread.change}></i></td>
+              <td className={mainOdds.team1.moneyline.change}>{mainOdds.team1.moneyline.moneyline} <i className={mainOdds.team1.moneyline.change}></i></td>
+              <td className={mainOdds.team1.total.change}>{mainOdds.team1.total.total} <i className={mainOdds.team1.total.change}></i></td>
             </tr>
             <tr>
               <td>{mainOdds.team2.name}</td>
-              <td>{mainOdds.team2.spread}</td>
-              <td>{mainOdds.team2.moneyline}</td>
-              <td>{mainOdds.team2.total}</td>
+              <td className={mainOdds.team2.spread.change}>{mainOdds.team2.spread.spread} <i className={mainOdds.team2.spread.change}></i></td>
+              <td className={mainOdds.team2.moneyline.change}>{mainOdds.team2.moneyline.moneyline} <i className={mainOdds.team2.moneyline.change}></i></td>
+              <td className={mainOdds.team2.total.change}>{mainOdds.team2.total.total} <i className={mainOdds.team2.total.change}></i></td>
             </tr>
           </tbody>
         </table>
