@@ -37,6 +37,8 @@ football, basketball, hockey, soccer
 
 TEAM is one of the teams playing in the game. For college, only use the school's name, but pros can use either the city/state or the team name. Idk, Bovada's fucky like that.
 
+If something doesn't seem like it's working, try copying the team's name from Bovada directly.
+
 Examples:
 !Football Michigan
 !Football Browns
