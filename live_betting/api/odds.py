@@ -1,9 +1,9 @@
 """REST API for getting odds."""
+import time
 import json
 import requests
 import flask
 import live_betting
-from live_betting.model import CUR_GAME
 
 
 @live_betting.app.route('/api/v1/odds/', methods=["GET"])
@@ -32,6 +32,60 @@ def get_odds():
       ]
     }
     """
+    from live_betting.model import CUR_GAME, LAST_FOUND, update_last_time
+
+    context = {
+      "sport": "",
+      "odds": [
+        {
+            "type": "spread",
+            "period": "Match",
+            "teams": [
+                {
+                    "team": "",
+                    "val": ""
+                },
+                {
+                    "team": "",
+                    "val": ""
+                }
+            ]
+        },
+        {
+            "type": "moneyline",
+            "period": "Match",
+            "teams": [
+                {
+                    "team": "",
+                    "val": ""
+                },
+                {
+                    "team": "",
+                    "val": ""
+                }
+            ]
+        },
+        {
+            "type": "total",
+            "period": "Match",
+            "teams": [
+                {
+                    "team": "",
+                    "val": ""
+                },
+                {
+                    "team": "",
+                    "val": ""
+                }
+            ]
+        }
+      ]
+    }
+
+    global LAST_FOUND
+    # Timeout if Bovada doesn't return anything useful for 10 minutes
+    if LAST_FOUND + 60*10 < time.time():
+        return flask.jsonify(**context)
 
     sport = CUR_GAME['sport']
     team = CUR_GAME['team']
@@ -71,53 +125,10 @@ def get_odds():
                     break
 
     if not found:
-        context = {
-          "odds": [
-            {
-                "type": "spread",
-                "period": "Match",
-                "teams": [
-                    {
-                        "team": "",
-                        "val": ""
-                    },
-                    {
-                        "team": "",
-                        "val": ""
-                    }
-                ]
-            },
-            {
-                "type": "moneyline",
-                "period": "Match",
-                "teams": [
-                    {
-                        "team": "",
-                        "val": ""
-                    },
-                    {
-                        "team": "",
-                        "val": ""
-                    }
-                ]
-            },
-            {
-                "type": "total",
-                "period": "Match",
-                "teams": [
-                    {
-                        "team": "",
-                        "val": ""
-                    },
-                    {
-                        "team": "",
-                        "val": ""
-                    }
-                ]
-            }
-          ]
-        }
         return flask.jsonify(**context)
+
+    # Found, so reset the last time we found the game
+    update_last_time()
 
     # all_odds is now an array of groups of odds. We only care about the normal
     # odds, so that's [0]

@@ -1,7 +1,9 @@
 """Loads current game and stores it as global."""
 
-CUR_GAME = {}
+import time
 
+CUR_GAME = {}
+LAST_FOUND = 0.0
 
 def load_cur_game():
     """
@@ -19,6 +21,9 @@ def load_cur_game():
         "team": "ruifvbgrui"
     }
 
+    global LAST_FOUND
+    LAST_FOUND = 0.0
+
 
 def update_cur_game(new_game):
     """
@@ -32,3 +37,13 @@ def update_cur_game(new_game):
     """
     global CUR_GAME
     CUR_GAME = new_game
+
+    global LAST_FOUND
+    LAST_FOUND = time.time()
+
+def update_last_time():
+    """
+    Update LAST_FOUND.
+    """
+    global LAST_FOUND
+    LAST_FOUND = time.time()

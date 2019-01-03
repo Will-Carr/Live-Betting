@@ -1,9 +1,10 @@
 """REST API for updating the game."""
+import time
 import json
 import requests
 import flask
 import live_betting
-from live_betting.model import CUR_GAME
+from live_betting.model import update_cur_game
 
 
 @live_betting.app.route('/api/v1/update/', methods=["POST"])
@@ -52,8 +53,12 @@ Examples:
         else:
             sport, team = message.split(" ", 1)
 
-            CUR_GAME["sport"] = sport
-            CUR_GAME["team"] = team
+            new_game = {}
+
+            new_game["sport"] = sport
+            new_game["team"] = team
+
+            update_cur_game(new_game)
 
 
     return flask.jsonify(**{})
