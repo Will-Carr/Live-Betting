@@ -272,6 +272,9 @@ class AllOdds extends React.Component {
     return (
 
       <div>
+        <h1>
+          {mainOdds.team1.name != "" ? mainOdds.team1.name + " vs. " + mainOdds.team2.name : "No Matchup Found"}
+        </h1>
         <table>
           <thead>
             <tr>

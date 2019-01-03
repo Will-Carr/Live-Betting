@@ -68,7 +68,53 @@ def get_odds():
                     break
 
     if not found:
-        return flask.jsonify(**{})
+        context = {
+          "odds": [
+            {
+                "type": "spread",
+                "period": "Match",
+                "teams": [
+                    {
+                        "team": "",
+                        "val": ""
+                    },
+                    {
+                        "team": "",
+                        "val": ""
+                    }
+                ]
+            },
+            {
+                "type": "moneyline",
+                "period": "Match",
+                "teams": [
+                    {
+                        "team": "",
+                        "val": ""
+                    },
+                    {
+                        "team": "",
+                        "val": ""
+                    }
+                ]
+            },
+            {
+                "type": "total",
+                "period": "Match",
+                "teams": [
+                    {
+                        "team": "",
+                        "val": ""
+                    },
+                    {
+                        "team": "",
+                        "val": ""
+                    }
+                ]
+            }
+          ]
+        }
+        return flask.jsonify(**context)
 
     # all_odds is now an array of groups of odds. We only care about the normal
     # odds, so that's [0]

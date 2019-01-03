@@ -15,8 +15,8 @@ def load_cur_game():
     """
     global CUR_GAME
     CUR_GAME = {
-        "sport": "football",
-        "team": "virginia tech"
+        "sport": "basketball",
+        "team": "ruifvbgrui"
     }
 
 
