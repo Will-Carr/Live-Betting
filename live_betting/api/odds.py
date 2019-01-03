@@ -12,6 +12,7 @@ def get_odds():
 
     Return:
     {
+      "sport": "football"
       "odds": [
         {
             "type": "spread", (spread, moneyline, total)
@@ -61,6 +62,8 @@ def get_odds():
                 if team in competitor["name"].lower():
 
                     competitors = [c["name"] for c in game["competitors"]]
+                    if sport == "soccer":
+                        competitors.append("Draw")
 
                     all_odds = game["displayGroups"]
 
@@ -120,13 +123,16 @@ def get_odds():
     # odds, so that's [0]
     normal_odds = all_odds[0]
 
-    context = {"odds": []}
+    context = {
+        "sport": sport,
+        "odds": []
+    }
 
     for odds_type in normal_odds["markets"]:
 
         new_odd = {}
 
-        if odds_type["description"] == "Point Spread":
+        if odds_type["description"] == "Point Spread" or odds_type["description"] == "Goal Spread":
 
             new_odd["type"] = "spread"
             new_odd["period"] = odds_type["period"]["description"]
@@ -148,7 +154,7 @@ def get_odds():
 
             context["odds"].append(new_odd)
 
-        elif odds_type["description"] == "Moneyline":
+        elif odds_type["description"] == "Moneyline" or odds_type["description"] == "3-Way Moneyline":
 
             new_odd["type"] = "moneyline"
             new_odd["period"] = odds_type["period"]["description"]

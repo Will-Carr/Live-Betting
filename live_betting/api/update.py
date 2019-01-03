@@ -32,7 +32,7 @@ The command:
 ![SPORT] [TEAM]
 
 SPORT is, you know, the sport you're looking for. The ones that are supported are:
-football, basketball, hockey
+football, basketball, hockey, soccer
 
 TEAM is one of the teams playing in the game. For college, only use the school's name, but pros can use either the city/state or the team name. Idk, Bovada's fucky like that.
 
@@ -40,7 +40,6 @@ Examples:
 !Football Michigan
 !Football Browns
 !Basketball New York Knicks
-!Hockey
             """
 
             post_json = {
