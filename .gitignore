@@ -9,5 +9,4 @@ env/
 var/
 .vs_code/
 node_modules/
-bundle.js
 cookies.txt
