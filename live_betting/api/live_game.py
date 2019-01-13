@@ -9,8 +9,17 @@ import live_betting
 
 def live_game(sport, team):
 
+    from live_betting.model import CUR_STAT, update_stat
+
     if sport == "football":
         new_sport = "nfl"
+        stat = CUR_STAT
+        if stat == "passing":
+            update_stat("rushing")
+        elif stat == "rushing":
+            update_stat("receiving")
+        elif stat == "receiving":
+            update_stat("passing")
     # else if sport == "hockey":
     #     new_sport = "nhl"
     # else if sport == "football":
@@ -25,22 +34,18 @@ def live_game(sport, team):
     espn_html = requests.get(url).text
     soup = BeautifulSoup(espn_html, 'lxml')
 
-    passing = soup.find(id="gamepackage-passing")
-    rushing = soup.find(id="gamepackage-rushing")
-    receiving = soup.find(id="gamepackage-receiving")
+    if stat == "passing":
+        the_stat = soup.find(id="gamepackage-passing")
+    elif stat == "rushing":
+        the_stat = soup.find(id="gamepackage-rushing")
+    elif stat == "receiving":
+        the_stat = soup.find(id="gamepackage-receiving")
 
     try:
-        for div in passing.find_all("span", {'class':'abbr'}):
+        for div in the_stat.find_all("span", {'class':'abbr'}):
             div.decompose()
-        for div in rushing.find_all("span", {'class':'abbr'}):
-            div.decompose()
-        for div in receiving.find_all("span", {'class':'abbr'}):
-            div.decompose()
-        # passing.span["abbr"].decompose()
-        # rushing.span["abbr"].decompose()
-        # receiving.span["abbr"].decompose()
-        # print(passing)
-        all = "<div>" + passing.prettify() + rushing.prettify() + receiving.prettify() + "</div>"
+
+        all = the_stat.prettify()
     except:
         all = "<div></div>"
 
