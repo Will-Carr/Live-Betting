@@ -15,7 +15,6 @@ def live_game(sport, team):
     new_sports = []
 
     team = team.replace(" ", "%20")
-    print(team)
 
     if sport == "football":
         new_sports = ["nfl", "college-football"]
@@ -26,20 +25,30 @@ def live_game(sport, team):
             update_stat("receiving")
         else:
             update_stat("passing")
+
     elif sport == "basketball":
         new_sports = ["nba", "mens-college-basketball"]
         stat = CUR_STAT
-        if stat == "home":
-            update_stat("away")
+        if stat == "home-b":
+            update_stat("away-b")
         else:
-            update_stat("home")
-    # elif sport == "football":
-    #     new_sport = "nfl"
+            update_stat("home-b")
+
+    elif sport == "hockey":
+        new_sports = ["nhl"]
+
+        # ESPN's hockey stat format is cancer
+
+        # stat = CUR_STAT
+        # if stat == "home-h":
+        #     update_stat("away-h")
+        # else:
+        #     update_stat("home-h")
+
     else:
         new_sport = [sport]
 
     gameId, new_sport = find_game_id(new_sports, team)
-    print(gameId, new_sport)
 
     url = "http://www.espn.com/" + new_sport + "/boxscore?gameId=" + gameId
 
@@ -55,10 +64,18 @@ def live_game(sport, team):
         the_stat = soup.find(id="gamepackage-receiving")
 
     # Basketball
-    elif stat == "away":
+    elif stat == "away-b":
         the_stat = soup.find(class_="gamepackage-away-wrap")
-    elif stat == "home":
+    elif stat == "home-b":
         the_stat = soup.find(class_="gamepackage-home-wrap")
+
+    # Hockey
+    # elif stat == "away-h":
+    #     stats = soup.find(class_="Boxscore__ResponsiveWrapper").findChildren(class_="Wrapper")
+    #     the_stat = stats[0]
+    # elif stat == "home-h":
+    #     stats = soup.find(class_="Boxscore__ResponsiveWrapper").findChildren(class_="Wrapper")
+    #     the_stat = stats[1]
 
     try:
         for div in the_stat.find_all("span", {'class':'abbr'}):
