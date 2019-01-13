@@ -11,6 +11,8 @@ def live_game(sport, team):
 
     from live_betting.model import CUR_STAT, update_stat
 
+    stat = ""
+
     if sport == "football":
         new_sport = "nfl"
         stat = CUR_STAT
