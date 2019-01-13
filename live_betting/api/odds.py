@@ -4,6 +4,7 @@ import json
 import requests
 import flask
 import live_betting
+from live_game import live_game
 
 
 @live_betting.app.route('/api/v1/odds/', methods=["GET"])
@@ -79,7 +80,8 @@ def get_odds():
                 }
             ]
         }
-      ]
+      ],
+      "live_stats": "<div></div>"
     }
 
     global LAST_FOUND
@@ -136,8 +138,11 @@ def get_odds():
 
     context = {
         "sport": sport,
-        "odds": []
+        "odds": [],
+        "live_stats": live_game(sport, team)
     }
+
+    # print(context)
 
     for odds_type in normal_odds["markets"]:
 

@@ -9622,7 +9622,8 @@ var AllOdds = function (_React$Component) {
             "change": "none"
           }
         }
-      }
+      },
+      live_stats: "<div></div>"
     };
     _this.refreshGame = _this.refreshGame.bind(_this);
     return _this;
@@ -9652,7 +9653,8 @@ var AllOdds = function (_React$Component) {
       }).then(function (data) {
         _this3.setState({
           sport: data.sport,
-          odds: data.odds
+          odds: data.odds,
+          live_stats: data.live_stats
         });
       });
     }
@@ -10067,7 +10069,9 @@ var AllOdds = function (_React$Component) {
               )
             ) : ""
           )
-        )
+        ),
+        _react2.default.createElement("br", null),
+        _react2.default.createElement("div", { dangerouslySetInnerHTML: { __html: this.state.live_stats } })
       );
     }
   }]);

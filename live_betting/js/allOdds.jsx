@@ -37,7 +37,8 @@ class AllOdds extends React.Component {
             "change": "none"
           }
         }
-      }
+      },
+      live_stats: "<div></div>"
     };
     this.refreshGame = this.refreshGame.bind(this);
   }
@@ -60,6 +61,7 @@ class AllOdds extends React.Component {
         this.setState({
           sport: data.sport,
           odds: data.odds,
+          live_stats: data.live_stats,
         });
       });
   }
@@ -386,6 +388,8 @@ class AllOdds extends React.Component {
             </tr> : ""}
           </tbody>
         </table>
+        <br />
+        <div dangerouslySetInnerHTML={{__html: this.state.live_stats}}></div>
       </div>
     );
   }

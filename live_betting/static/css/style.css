@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 3.5em;
 }
 
 table {
@@ -18,7 +18,7 @@ table, th, td {
 th, td {
   padding: 15px;
   text-align: left;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 tr:nth-child(even) {
@@ -71,4 +71,26 @@ td.dec {
 
 td.none {
   color: black;
+}
+
+.gamepackage-passing, .gamepackage-rushing, .gamepackage-receiving {
+  width: 100%;
+}
+
+.gamepackage-away-wrap, .gamepackage-home-wrap {
+  width: 49%;
+  display: inline-block;
+}
+
+.team-name {
+  font-size: 2em;
+}
+
+.mod-data {
+  font-size: .35em;
+}
+
+img {
+  width: 50px !important;
+  height: 50px !important;
 }
