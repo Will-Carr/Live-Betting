@@ -9713,229 +9713,232 @@ var AllOdds = function (_React$Component) {
       var sport = this.state.sport;
 
       for (var i = 0; i < this.state.odds.length; i++) {
-        var odd = this.state.odds[i];
-        if (odd["type"] == "spread" && (odd["period"] == "Match" || odd["period"] == "Live Match" || odd["period"] == "Regulation Time" || odd["period"] == "Live Regulation Time")) {
+        try {
+          var odd = this.state.odds[i];
+          if (odd["type"] == "spread" && (odd["period"] == "Match" || odd["period"] == "Live Match" || odd["period"] == "Regulation Time" || odd["period"] == "Live Regulation Time")) {
 
-          if (mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][0]["team"];
+            if (mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][0]["team"];
 
-            if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team1"]["spread"]["spread"])) {
-              mainOdds["team1"]["spread"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team1"]["spread"]["spread"])) {
-              mainOdds["team1"]["spread"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["spread"]["change"] = "none";
+              if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team1"]["spread"]["spread"])) {
+                mainOdds["team1"]["spread"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team1"]["spread"]["spread"])) {
+                mainOdds["team1"]["spread"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["spread"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["spread"]["spread"] = odd["teams"][0]["val"];
+            } else if (mainOdds["team1"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][1]["team"];
+
+              if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team1"]["spread"]["spread"])) {
+                mainOdds["team1"]["spread"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team1"]["spread"]["spread"])) {
+                mainOdds["team1"]["spread"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["spread"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["spread"]["spread"] = odd["teams"][1]["val"];
             }
 
-            mainOdds["team1"]["spread"]["spread"] = odd["teams"][0]["val"];
-          } else if (mainOdds["team1"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][1]["team"];
+            if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][1]["team"];
 
-            if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team1"]["spread"]["spread"])) {
-              mainOdds["team1"]["spread"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team1"]["spread"]["spread"])) {
-              mainOdds["team1"]["spread"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["spread"]["change"] = "none";
+              if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team2"]["spread"]["spread"])) {
+                mainOdds["team2"]["spread"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team2"]["spread"]["spread"])) {
+                mainOdds["team2"]["spread"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["spread"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["spread"]["spread"] = odd["teams"][1]["val"];
+            } else if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][0]["team"];
+
+              if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team2"]["spread"]["spread"])) {
+                mainOdds["team2"]["spread"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team2"]["spread"]["spread"])) {
+                mainOdds["team2"]["spread"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["spread"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["spread"]["spread"] = odd["teams"][0]["val"];
+            }
+          } else if (odd["type"] == "moneyline" && (odd["period"] == "Match" || odd["period"] == "Live Match" || odd["period"] == "Regulation Time" || odd["period"] == "Live Regulation Time")) {
+
+            if (mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][0]["team"];
+
+              if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
+                mainOdds["team1"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
+                mainOdds["team1"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][0]["val"];
+            } else if (mainOdds["team1"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][1]["team"];
+
+              if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
+                mainOdds["team1"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
+                mainOdds["team1"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][1]["val"];
+            } else if (sport == "soccer" && mainOdds["team1"]["name"] == odd["teams"][2]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][2]["team"];
+
+              if (parseFloat(odd["teams"][2]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
+                mainOdds["team1"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][2]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
+                mainOdds["team1"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][2]["val"];
             }
 
-            mainOdds["team1"]["spread"]["spread"] = odd["teams"][1]["val"];
+            // HERE
+            if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][1]["team"];
+
+              if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
+                mainOdds["team2"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
+                mainOdds["team2"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][1]["val"];
+            } else if (mainOdds["team2"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][0]["team"];
+
+              if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
+                mainOdds["team2"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
+                mainOdds["team2"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][0]["val"];
+            } else if (sport == "soccer" && mainOdds["team2"]["name"] == odd["teams"][2]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][2]["team"];
+
+              if (parseFloat(odd["teams"][2]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
+                mainOdds["team2"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][2]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
+                mainOdds["team2"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][2]["val"];
+            }
+
+            if (sport == "soccer" && (mainOdds["team3"]["name"] == "" || mainOdds["team3"]["name"] == odd["teams"][2]["team"])) {
+              mainOdds["team3"]["name"] = odd["teams"][2]["team"];
+
+              if (parseFloat(odd["teams"][2]["val"]) > parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
+                mainOdds["team3"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][2]["val"]) < parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
+                mainOdds["team3"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team3"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team3"]["moneyline"]["moneyline"] = odd["teams"][2]["val"];
+            } else if (sport == "soccer" && mainOdds["team3"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team3"]["name"] = odd["teams"][1]["team"];
+
+              if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
+                mainOdds["team3"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
+                mainOdds["team3"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team3"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team3"]["moneyline"]["moneyline"] = odd["teams"][1]["val"];
+            } else if (sport == "soccer" && mainOdds["team3"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team3"]["name"] = odd["teams"][0]["team"];
+
+              if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
+                mainOdds["team3"]["moneyline"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
+                mainOdds["team3"]["moneyline"]["change"] = "dec";
+              } else {
+                mainOdds["team3"]["moneyline"]["change"] = "none";
+              }
+
+              mainOdds["team3"]["moneyline"]["moneyline"] = odd["teams"][0]["val"];
+            }
+          } else if (odd["type"] == "total" && (odd["period"] == "Match" || odd["period"] == "Live Match" || odd["period"] == "Regulation Time" || odd["period"] == "Live Regulation Time")) {
+
+            if (mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][0]["team"];
+
+              if (parseFloat(odd["teams"][0]["val"].substring(2)) > parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
+                mainOdds["team1"]["total"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"].substring(2)) < parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
+                mainOdds["team1"]["total"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["total"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["total"]["total"] = odd["teams"][0]["val"];
+            } else if (mainOdds["team1"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team1"]["name"] = odd["teams"][1]["team"];
+
+              if (parseFloat(odd["teams"][1]["val"].substring(2)) > parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
+                mainOdds["team1"]["total"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"].substring(2)) < parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
+                mainOdds["team1"]["total"]["change"] = "dec";
+              } else {
+                mainOdds["team1"]["total"]["change"] = "none";
+              }
+
+              mainOdds["team1"]["total"]["total"] = odd["teams"][1]["val"];
+            }
+
+            if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][1]["team"];
+
+              if (parseFloat(odd["teams"][1]["val"].substring(2)) > parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
+                mainOdds["team2"]["total"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][1]["val"].substring(2)) < parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
+                mainOdds["team2"]["total"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["total"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["total"]["total"] = odd["teams"][1]["val"];
+            } else if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]) {
+              mainOdds["team2"]["name"] = odd["teams"][0]["team"];
+
+              if (parseFloat(odd["teams"][0]["val"].substring(2)) > parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
+                mainOdds["team2"]["total"]["change"] = "inc";
+              } else if (parseFloat(odd["teams"][0]["val"].substring(2)) < parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
+                mainOdds["team2"]["total"]["change"] = "dec";
+              } else {
+                mainOdds["team2"]["total"]["change"] = "none";
+              }
+
+              mainOdds["team2"]["total"]["total"] = odd["teams"][0]["val"];
+            }
           }
-
-          if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][1]["team"];
-
-            if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team2"]["spread"]["spread"])) {
-              mainOdds["team2"]["spread"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team2"]["spread"]["spread"])) {
-              mainOdds["team2"]["spread"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["spread"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["spread"]["spread"] = odd["teams"][1]["val"];
-          } else if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][0]["team"];
-
-            if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team2"]["spread"]["spread"])) {
-              mainOdds["team2"]["spread"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team2"]["spread"]["spread"])) {
-              mainOdds["team2"]["spread"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["spread"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["spread"]["spread"] = odd["teams"][0]["val"];
-          }
-        } else if (odd["type"] == "moneyline" && (odd["period"] == "Match" || odd["period"] == "Live Match" || odd["period"] == "Regulation Time" || odd["period"] == "Live Regulation Time")) {
-
-          if (mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][0]["team"];
-
-            if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
-              mainOdds["team1"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
-              mainOdds["team1"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][0]["val"];
-          } else if (mainOdds["team1"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][1]["team"];
-
-            if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
-              mainOdds["team1"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
-              mainOdds["team1"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][1]["val"];
-          } else if (sport == "soccer" && mainOdds["team1"]["name"] == odd["teams"][2]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][2]["team"];
-
-            if (parseFloat(odd["teams"][2]["val"]) > parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
-              mainOdds["team1"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][2]["val"]) < parseFloat(prevOdds["team1"]["moneyline"]["moneyline"])) {
-              mainOdds["team1"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team1"]["moneyline"]["moneyline"] = odd["teams"][2]["val"];
-          }
-
-          if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][1]["team"];
-
-            if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
-              mainOdds["team2"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
-              mainOdds["team2"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][1]["val"];
-          } else if (mainOdds["team2"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][0]["team"];
-
-            if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
-              mainOdds["team2"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
-              mainOdds["team2"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][0]["val"];
-          } else if (sport == "soccer" && mainOdds["team2"]["name"] == odd["teams"][2]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][2]["team"];
-
-            if (parseFloat(odd["teams"][2]["val"]) > parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
-              mainOdds["team2"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][2]["val"]) < parseFloat(prevOdds["team2"]["moneyline"]["moneyline"])) {
-              mainOdds["team2"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["moneyline"]["moneyline"] = odd["teams"][2]["val"];
-          }
-
-          if (sport == "soccer" && (mainOdds["team3"]["name"] == "" || mainOdds["team3"]["name"] == odd["teams"][2]["team"])) {
-            mainOdds["team3"]["name"] = odd["teams"][2]["team"];
-
-            if (parseFloat(odd["teams"][2]["val"]) > parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
-              mainOdds["team3"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][2]["val"]) < parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
-              mainOdds["team3"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team3"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team3"]["moneyline"]["moneyline"] = odd["teams"][2]["val"];
-          } else if (sport == "soccer" && mainOdds["team3"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team3"]["name"] = odd["teams"][1]["team"];
-
-            if (parseFloat(odd["teams"][1]["val"]) > parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
-              mainOdds["team3"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"]) < parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
-              mainOdds["team3"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team3"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team3"]["moneyline"]["moneyline"] = odd["teams"][1]["val"];
-          } else if (sport == "soccer" && mainOdds["team3"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team3"]["name"] = odd["teams"][0]["team"];
-
-            if (parseFloat(odd["teams"][0]["val"]) > parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
-              mainOdds["team3"]["moneyline"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"]) < parseFloat(prevOdds["team3"]["moneyline"]["moneyline"])) {
-              mainOdds["team3"]["moneyline"]["change"] = "dec";
-            } else {
-              mainOdds["team3"]["moneyline"]["change"] = "none";
-            }
-
-            mainOdds["team3"]["moneyline"]["moneyline"] = odd["teams"][0]["val"];
-          }
-        } else if (odd["type"] == "total" && (odd["period"] == "Match" || odd["period"] == "Live Match" || odd["period"] == "Regulation Time" || odd["period"] == "Live Regulation Time")) {
-
-          if (mainOdds["team1"]["name"] == "" || mainOdds["team1"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][0]["team"];
-
-            if (parseFloat(odd["teams"][0]["val"].substring(2)) > parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
-              mainOdds["team1"]["total"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"].substring(2)) < parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
-              mainOdds["team1"]["total"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["total"]["change"] = "none";
-            }
-
-            mainOdds["team1"]["total"]["total"] = odd["teams"][0]["val"];
-          } else if (mainOdds["team1"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team1"]["name"] = odd["teams"][1]["team"];
-
-            if (parseFloat(odd["teams"][1]["val"].substring(2)) > parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
-              mainOdds["team1"]["total"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"].substring(2)) < parseFloat(prevOdds["team1"]["total"]["total"].substring(2))) {
-              mainOdds["team1"]["total"]["change"] = "dec";
-            } else {
-              mainOdds["team1"]["total"]["change"] = "none";
-            }
-
-            mainOdds["team1"]["total"]["total"] = odd["teams"][1]["val"];
-          }
-
-          if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][1]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][1]["team"];
-
-            if (parseFloat(odd["teams"][1]["val"].substring(2)) > parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
-              mainOdds["team2"]["total"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][1]["val"].substring(2)) < parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
-              mainOdds["team2"]["total"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["total"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["total"]["total"] = odd["teams"][1]["val"];
-          } else if (mainOdds["team2"]["name"] == "" || mainOdds["team2"]["name"] == odd["teams"][0]["team"]) {
-            mainOdds["team2"]["name"] = odd["teams"][0]["team"];
-
-            if (parseFloat(odd["teams"][0]["val"].substring(2)) > parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
-              mainOdds["team2"]["total"]["change"] = "inc";
-            } else if (parseFloat(odd["teams"][0]["val"].substring(2)) < parseFloat(prevOdds["team2"]["total"]["total"].substring(2))) {
-              mainOdds["team2"]["total"]["change"] = "dec";
-            } else {
-              mainOdds["team2"]["total"]["change"] = "none";
-            }
-
-            mainOdds["team2"]["total"]["total"] = odd["teams"][0]["val"];
-          }
-        }
+        } catch (err) {}
       }
 
       this.state.prevOdds = mainOdds;
