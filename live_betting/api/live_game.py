@@ -39,7 +39,7 @@ def live_game(sport, team):
         # passing.span["abbr"].decompose()
         # rushing.span["abbr"].decompose()
         # receiving.span["abbr"].decompose()
-        print(passing)
+        # print(passing)
         all = "<div>" + passing.prettify() + rushing.prettify() + receiving.prettify() + "</div>"
     except:
         all = "<div></div>"
