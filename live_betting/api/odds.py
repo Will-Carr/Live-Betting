@@ -1,6 +1,5 @@
 """REST API for getting odds."""
 import time
-import json
 import requests
 import flask
 import live_betting
@@ -148,7 +147,7 @@ def get_odds():
 
         new_odd = {}
 
-        if odds_type["description"] == "Point Spread" or odds_type["description"] == "Goal Spread":
+        if odds_type["description"] == "Point Spread" or odds_type["description"] == "Goal Spread" or odds_type["description"] == "Live Spread":
 
             new_odd["type"] = "spread"
             new_odd["period"] = odds_type["period"]["description"]
@@ -170,7 +169,7 @@ def get_odds():
 
             context["odds"].append(new_odd)
 
-        elif odds_type["description"] == "Moneyline" or odds_type["description"] == "3-Way Moneyline":
+        elif odds_type["description"] == "Moneyline" or odds_type["description"] == "3-Way Moneyline" or odds_type["description"] == "Live Moneyline":
 
             new_odd["type"] = "moneyline"
             new_odd["period"] = odds_type["period"]["description"]
@@ -189,7 +188,7 @@ def get_odds():
 
             context["odds"].append(new_odd)
 
-        elif odds_type["description"] == "Total":
+        elif odds_type["description"] == "Total" or odds_type["description"] == "Live Over/Under":
 
             new_odd["type"] = "total"
             new_odd["period"] = odds_type["period"]["description"]

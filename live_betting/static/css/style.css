@@ -82,6 +82,10 @@ td.none {
   display: inline-block;
 }
 
+.column-one, .column-two {
+  width: 100% !important;
+}
+
 .team-name {
   font-size: 2.5em;
 }

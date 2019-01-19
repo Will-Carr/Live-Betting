@@ -1,10 +1,7 @@
 """REST API for getting game stats from ESPN."""
-import re
 from bs4 import BeautifulSoup
 import lxml
-import json
 import requests
-import live_betting
 
 
 def live_game(sport, team):
