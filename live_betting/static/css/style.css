@@ -73,17 +73,17 @@ td.none {
   color: black;
 }
 
-.gamepackage-passing, .gamepackage-rushing, .gamepackage-receiving {
+#gamepackage-passing, #gamepackage-rushing, #gamepackage-receiving {
   width: 100%;
-}
-
-.gamepackage-away-wrap, .gamepackage-home-wrap {
-  width: 49%;
-  display: inline-block;
 }
 
 .column-one, .column-two {
   width: 100% !important;
+}
+
+#gamepackage-passing > .row-wrapper > .col, #gamepackage-rushing > .row-wrapper > .col, #gamepackage-receiving > .row-wrapper > .col {
+  width: 49% !important;
+  display: inline-block;
 }
 
 .team-name {
