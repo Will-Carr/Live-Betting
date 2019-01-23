@@ -6,7 +6,7 @@ import requests
 
 def live_game(sport, team):
 
-    from live_betting.model import CUR_STAT, update_stat
+    from live_betting.model import CUR_STAT, update_stat, CUR_STAT_URL, update_stat_url
 
     stat = ""
     new_sports = []
@@ -45,9 +45,18 @@ def live_game(sport, team):
     else:
         new_sport = [sport]
 
-    gameId, new_sport = find_game_id(new_sports, team)
+    url = CUR_STAT_URL
 
-    url = "http://www.espn.com/" + new_sport + "/boxscore?gameId=" + gameId
+    if url is None:
+
+        game_found, gameId, new_sport = find_game_id(new_sports, team)
+
+        url = "http://www.espn.com/" + new_sport + "/boxscore?gameId=" + gameId
+
+        if not game_found:
+            update_stat_url(None)
+        else:
+            update_stat_url(url)
 
     espn_html = requests.get(url).text
     soup = BeautifulSoup(espn_html, 'lxml')
@@ -123,4 +132,4 @@ def find_game_id(sports, team):
         if found:
             break
 
-    return gameId, ret_sport
+    return found, gameId, ret_sport

@@ -1,10 +1,8 @@
 """REST API for updating the game."""
-import time
-import json
 import requests
 import flask
 import live_betting
-from live_betting.model import update_cur_game
+from live_betting.model import update_cur_game, update_stat_url
 
 
 @live_betting.app.route('/api/v1/update/', methods=["POST"])
@@ -52,6 +50,27 @@ Examples:
 
             requests.post("https://api.groupme.com/v3/bots/post", json=post_json)
 
+            response = """
+If the stats are being fucky, there's another command:
+!stats [URL]
+
+URL is the URL for the ESPN boxscore of the game.
+
+Examples:
+!stats http://www.espn.com/mens-college-basketball/boxscore?gameId=401082461
+            """
+
+            post_json = {
+                "bot_id": "d3835727b9e146241672ef5119",
+                "text": response
+            }
+
+            requests.post("https://api.groupme.com/v3/bots/post", json=post_json)
+
+        elif message[:5] == "stats":
+
+            update_stat_url(message[6:])
+
         else:
             sport, team = message.split(" ", 1)
 
@@ -61,6 +80,6 @@ Examples:
             new_game["team"] = team
 
             update_cur_game(new_game)
-
+            update_stat_url(None)
 
     return flask.jsonify(**{})

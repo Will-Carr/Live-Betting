@@ -5,6 +5,8 @@ import time
 CUR_GAME = {}
 LAST_FOUND = 0.0
 CUR_STAT = ""
+CUR_STAT_URL = None
+
 
 def load_cur_game():
     """
@@ -45,6 +47,7 @@ def update_cur_game(new_game):
     global LAST_FOUND
     LAST_FOUND = time.time()
 
+
 def update_last_time():
     """
     Update LAST_FOUND.
@@ -52,9 +55,18 @@ def update_last_time():
     global LAST_FOUND
     LAST_FOUND = time.time()
 
+
 def update_stat(stat):
     """
     Update LAST_FOUND.
     """
     global CUR_STAT
     CUR_STAT = stat
+
+
+def update_stat_url(url):
+    """
+    Update LAST_FOUND.
+    """
+    global CUR_STAT_URL
+    CUR_STAT_URL = url
